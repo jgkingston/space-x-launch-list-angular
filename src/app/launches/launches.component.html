@@ -1,0 +1,61 @@
+<table>
+  <thead>
+    <tr>
+      <th className="row-flight-number">
+        <a
+          className="sort-by"
+          (click)="onSort()"
+        >
+          Flight Number
+        </a>
+      </th>
+      <th>
+        Launch Year
+      </th>
+      <th>
+        Rocket Name
+      </th>
+      <th className="row-details">
+        Details
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let launch of launches"
+      [class.clickable-row]="!!launch.links.presskit"
+      (click)="onSelect(launch)"
+    >
+      <td>{{launch.flight_number}}</td>
+      <td>{{launch.launch_year}}</td>
+      <td>{{launch.rocket.rocket_name}}</td>
+      <td>{{launch.details}}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan=4>
+        <div>
+          <button
+            [disabled]="params.offset < params.limit"
+            (click)="handleOffset(0)"
+          >
+            First
+          </button>
+          <button
+            [disabled]="params.offset < params.limit"
+            (click)="handleOffset(params.offset - params.limit)"
+          >
+            Previous
+          </button>
+          <button
+            [disabled]="!!max && params.offset >= max - params.limit"
+            (click)="handleOffset(params.offset + params.limit)"
+          >
+            Next
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tfoot>
+</table>
