@@ -1,6 +1,10 @@
-# AngularTourOfHeroes
+# SpaceXLaunchListAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+
+## Demo
+
+A deployed version can be found here: `https://jgkingston.github.io/space-x-launch-list-angular/`
 
 ## Development server
 

@@ -84,12 +84,12 @@ tr.clickable-row {
   cursor: pointer;
 }
 
-tr.clickable-row:hover {
+tbody tr:hover {
   background-color: #3a3a3a;
   color: #fff;
 }
 
-tr.clickable-row:hover td {
+tbody tr:hover td {
   white-space: normal
 }
 
