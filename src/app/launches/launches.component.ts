@@ -1,7 +1,7 @@
+import { Component, OnInit, DoCheck } from '@angular/core';
+
 import { Params, Orders } from './../params';
 import { Launch } from './../launch';
-import { Component, OnInit, SimpleChanges, DoCheck } from '@angular/core';
-
 import { LaunchService } from '../launch.service';
 
 @Component({
@@ -10,13 +10,18 @@ import { LaunchService } from '../launch.service';
   styleUrls: ['./launches.component.css']
 })
 export class LaunchesComponent implements DoCheck, OnInit {
+  blankRows: number[];
+  isLoading: boolean;
   launches: Launch[];
+  math = Math;
   max: number | undefined;
   oldParamsOrder: Orders;
   oldParamsOffset: number;
   params: Params;
 
   constructor(private launchService: LaunchService) {
+    this.blankRows = [];
+    this.isLoading = false;
     this.max = undefined;
     this.params = {
       limit: 10,
@@ -31,6 +36,11 @@ export class LaunchesComponent implements DoCheck, OnInit {
   }
 
   ngDoCheck() {
+    /*
+      I am wondering if there is a better way to do this using ngOnChanges.
+      The examples I found were all closely tied to two-waydata-binding of
+      input elements.
+    */
     if (this.params.order !== this.oldParamsOrder) {
       this.getLaunches();
       this.oldParamsOrder = this.params.order;
@@ -42,10 +52,13 @@ export class LaunchesComponent implements DoCheck, OnInit {
   }
 
   getLaunches(): void {
+    this.isLoading = true;
     this.launchService.getLaunches(this.params)
       .subscribe(launches => {
         this.launches = launches;
-        if (launches.length < 10) {
+        this.blankRows = Array(this.params.limit - launches.length).fill(0).map((x, i) => i);
+        this.isLoading = false;
+        if (launches.length < this.params.limit) {
           this.max = this.params.offset + launches.length;
         }
       });
@@ -58,7 +71,9 @@ export class LaunchesComponent implements DoCheck, OnInit {
   }
 
   onSort(): void {
-    this.params.order = this.params.order === 'asc' ? 'desc' : 'asc';
+    this.params.order = this.params.order === 'asc'
+      ? 'desc'
+      : 'asc';
   }
 
   handleOffset(offset: number): void {

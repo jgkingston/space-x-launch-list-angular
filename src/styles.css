@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  font-family: 'Brandon Grotesque','brandon-grotesque-n7','brandon-grotesque',Helvetica,sans-serif;
+  font-size: 14px;
+}
+
+body {
+  color: #3a3a3a;
+  background-color: #eee;
+  height: 100%;
+  margin: 0px;
+}
