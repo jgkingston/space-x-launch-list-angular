@@ -1,5 +1,5 @@
 class Links {
-  presskit: 'string' | null;
+  presskit: string | null;
 }
 
 class Rocket {

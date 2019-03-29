@@ -1,8 +1,8 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 
-import { Params, Orders } from './../params';
-import { Launch } from './../launch';
-import { LaunchService } from '../launch.service';
+import { DEFAULT_PARAMS, Params, Orders } from '@models/params.model';
+import { Launch } from '@models/launch.model';
+import { LaunchService } from '@app/services/launch.service';
 
 @Component({
   selector: 'app-launches',
@@ -23,12 +23,7 @@ export class LaunchesComponent implements DoCheck, OnInit {
     this.blankRows = [];
     this.isLoading = false;
     this.max = undefined;
-    this.params = {
-      limit: 10,
-      offset: 0,
-      order: 'asc',
-      sort: 'flight_number',
-    };
+    this.params = DEFAULT_PARAMS;
   }
 
   ngOnInit() {

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-import { Launch } from './launch';
-import { Params } from './params';
-import { Utils } from './utils';
+import { Launch } from '@models/launch.model';
+import { Params } from '@models/params.model';
+import { Utils } from './utils.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LaunchService {
-  private launchesUrl = 'https://api.spacexdata.com/v3/launches';
+  launchesUrl = 'https://api.spacexdata.com/v3/launches';
 
   constructor(private http: HttpClient) {}
 

@@ -3,12 +3,12 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { LaunchesComponent } from './launches/launches.component';
+import { LaunchesComponent } from './components/launches/launches.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LaunchesComponent
+    LaunchesComponent,
   ],
   imports: [
     BrowserModule,
